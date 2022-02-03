@@ -75,5 +75,8 @@ function show_admin_notices() {
 	#delete_option( 'easy_notices' );
  }
 add_action( 'admin_notices', 'show_admin_notices', 0 );
-if(is_admin()) wp_enqueue_script( 'admin-tweaks-js', plugin_dir_url(__FILE__) . 'admin-tweaks.js', array( 'jquery' ), EASY_NOTICES_CURRENT_VERSION, true );
+if(is_admin()) 
+	add_action('admin_enqueue_scripts', function () { 
+		wp_enqueue_script( 'admin-tweaks-js', plugin_dir_url(__FILE__) . '/admin-tweaks.js', array( 'jquery' ), EASY_NOTICES_CURRENT_VERSION, true );
+	});
 ?>
